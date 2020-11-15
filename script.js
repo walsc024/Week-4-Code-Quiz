@@ -1,64 +1,85 @@
+const question = document.getElementById('question');
+const choices = Array.from(document.getElementsByClassName("choice-text"));
 
-
+var currentQuestion = {};
+var acceptingAnswers = true;
+var score = 0;
+var questionCounter = 0;
+var availableQuestions = [];
 
 var quizQuestions = [{
     question: "Ask a question",
-    questionChoices: ["1", "2", "3"],
-    correctAnswer: "2"
+    choice1: "1",
+    choice2: "2",
+    choice3: "3",
+    choice: "4",
+    answer: 2,
 }, {
     question: "Ask a question",
-    questionChoices: ["1", "2", "3"],
-    correctAnswer: "2"
+    choice1: "1",
+    choice2: "2",
+    choice3: "3",
+    choice: "4",
+    correctAnswer: 2,
 }, {
   question: "Ask a question",
-  questionChoices: ["1", "2", "3"],
-  correctAnswer: "2"
+  choice1: "1",
+    choice2: "2",
+    choice3: "3",
+    choice: "4",
+  correctAnswer: 2,
 },{
   question: "Ask a question",
-  questionChoices: ["1", "2", "3"],
-  correctAnswer: "2"
+  choice1: "1",
+    choice2: "2",
+    choice3: "3",
+    choice: "4",
+  correctAnswer: 2,
 },{
   question: "Ask a question",
-  questionChoices: ["1", "2", "3"],
-  correctAnswer: "2"
+  choice1: "1",
+    choice2: "2",
+    choice3: "3",
+    choice: "4",
+  correctAnswer: 2,
 }]
 
-
+const CORRECT_BONUS = 10;
+const MAX_QUESTIONS = 3
 
 
 var questionsSection = document.getElementById("questionsSection");
 questionsSection.style.display = "none";
 var startBttn = document.getElementById("startBttn");
 
-// function startTimer(duration, display) {
-//     var timer = duration, minutes, seconds;
-//     setInterval(function () {
-//         minutes = parseInt(timer / 60, 10);
-//         seconds = parseInt(timer % 60, 10);
 
-//         minutes = minutes < 10 ? "0" + minutes : minutes;
-//         seconds = seconds < 10 ? "0" + seconds : seconds;
-
-//         display.textContent = minutes + ":" + seconds;
-
-//         if (--timer < 0) {
-//             timer = duration;
-//         }
-//     }, 1000);
-// }
-
-// window.onload = function () {
-//     var oneMinute = 60 * 1,
-//         display = document.querySelector('#time');
-//     startTimer(fiveMinutes, display);
-//};
 
 function startQuiz() {
   var startScreen = document.getElementById("startScreen");
   startScreen.style.display = "none";
-  questionsSection.style.display = "block";
+  questionsSection.style.display = "block"
+  questionCounter = 0;
+  score = 0;
+  availableQuestions = [...quizQuestions]
+  console.log(availableQuestions);
+  getNewQuestion();
+  
+};
+
+getNewQuestion = () => {
+  questionCounter++;
+  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+  currentQuestion = availableQuestions[questionIndex];
+  question.innerText = currentQuestion.question;
+
+  choices.forEach( choices => {
+    const number = choices.dataset ['number'];
+    choices.innerText = currentQuestion['choice' + number];
+  })
+};
+
+startQuiz();
 
 
-}
 
 startBttn.onclick = startQuiz;
