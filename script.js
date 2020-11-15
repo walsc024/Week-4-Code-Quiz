@@ -20,18 +20,19 @@ var countDownDate = new Date("Jul 25, 2021 16:37:52").getTime();
     }
     }, 1000);
 
-
+// hides the questions until the start quiz button is pressed
 var questionsSection = document.getElementById("questionsSection");
 questionsSection.style.display = "none";
 var startBttn = document.getElementById("startBttn");
 
 
-
+// start quiz button to reveal quiz
 function startQuiz() {
   var startScreen = document.getElementById("startScreen");
   startScreen.style.display = "none";
   questionsSection.style.display = "block"
 
+  // quiz questions 
   function Quiz(questions) {
     this.score = 0;
     this.questions = questions;
@@ -65,7 +66,7 @@ Question.prototype.isCorrectAnswer = function(choice) {
     return this.answer === choice;
 }
  
- 
+ //  ends quiz and shows scroes
 function populate() {
     if(quiz.isEnded()) {
         showScores();
@@ -101,7 +102,7 @@ function showProgress() {
     var element = document.getElementById("progress");
     element.innerHTML = "Question " + currentQuestionNumber + " of " + quiz.questions.length;
 };
- 
+ // final message that shows score
 function showScores() {
     var gameOverHTML = "<h1>Result</h1>";
     gameOverHTML += "<h2 id='score'> Your scores: " + quiz.score + "</h2>";
@@ -109,7 +110,7 @@ function showScores() {
     element.innerHTML = gameOverHTML;
 };
  
-// create questions here
+// Questions for quiz
 var questions = [
     new Question("Which built-in method calls a function for each element in the array?", ["While()", "loop()", "forEach()", "None"], "forEach()"),
     new Question("JavaScript is a __ -side programming language", ["Client", "Server", "Both", "None"], "Both"),
@@ -118,10 +119,10 @@ var questions = [
     new Question("Which JavaScript label catches all the values, except for the ones specified?", ["catch", "label", "try", "default"], "default")
 ];
  
-// create quiz
+// creates quiz
 var quiz = new Quiz(questions);
  
-// display quiz
+// displays quiz
 populate();
 
 
