@@ -1,4 +1,25 @@
+var countDownDate = new Date("Jul 25, 2021 16:37:52").getTime();
 
+    // Run myfunc every second
+    var myfunc = setInterval(function() {
+
+    var now = new Date().getTime();
+    var timeleft = countDownDate - now;
+        
+    // Calculating the days, hours, minutes and seconds left
+    var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+        
+    // Result is output to the specific element
+   
+    document.getElementById("secs").innerHTML = seconds + "s " 
+        
+    // Display the message when countdown is over
+    if (timeleft < 0) {
+        clearInterval(myfunc);
+        document.getElementById("secs").innerHTML = ""
+        document.getElementById("end").innerHTML = "TIME UP!!";
+    }
+    }, 1000);
 
 
 var questionsSection = document.getElementById("questionsSection");
@@ -91,7 +112,7 @@ function showScores() {
  
 // create questions here
 var questions = [
-    new Question("Inside which HTML element do we put JavaScript", ["<js>", "<javascript>","<scripting>", "<script>"], "<script>"),
+    new Question("JavaScript is a __ -side programming language", ["Client", "Server", "Both", "None"], "Both"),
     new Question("JavaScript is a __ -side programming language", ["Client", "Server", "Both", "None"], "Both"),
     new Question("Which is not a JavaScript Framework?", ["Python Script", "JQuery","Django", "NodeJS"], "Django"),
     new Question("Which of the following will write the message “Hello DataFlair!” in an alert box?", ["alertBox(“Hello DataFlair!”);", "alert(Hello DataFlair!);", "msgAlert(“Hello DataFlair!”);", "alert(“Hello DataFlair!”);"], "alert(“Hello DataFlair!”);"),
@@ -103,6 +124,8 @@ var quiz = new Quiz(questions);
  
 // display quiz
 populate();
+
+
 
 }
 
