@@ -111,10 +111,10 @@ function showScores() {
  
 // create questions here
 var questions = [
-    new Question("JavaScript is a __ -side programming language", ["Client", "Server", "Both", "None"], "Both"),
+    new Question("Which built-in method calls a function for each element in the array?", ["While()", "loop()", "forEach()", "None"], "forEach()"),
     new Question("JavaScript is a __ -side programming language", ["Client", "Server", "Both", "None"], "Both"),
     new Question("Which is not a JavaScript Framework?", ["Python Script", "JQuery","Django", "NodeJS"], "Django"),
-    new Question("Which of the following will write the message “Hello DataFlair!” in an alert box?", ["alertBox(“Hello DataFlair!”);", "alert(Hello DataFlair!);", "msgAlert(“Hello DataFlair!”);", "alert(“Hello DataFlair!”);"], "alert(“Hello DataFlair!”);"),
+    new Question("Which of the following will write the message “Hello DataFlair!” in an alert box?", ["alertBox(“Hello DataFlair!”);", "alert(Hello DataFlair!);", "msgAlert(“Hello DataFlair!”);", "alertOption(“Hello DataFlair!”);"], "alert(“Hello DataFlair!”);"),
     new Question("Which JavaScript label catches all the values, except for the ones specified?", ["catch", "label", "try", "default"], "default")
 ];
  
