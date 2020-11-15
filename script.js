@@ -67,7 +67,17 @@ function startQuiz() {
 };
 
 getNewQuestion = () => {
-  questionCounter++;
+if (availableQuestions.length === 0 || questionsCounter > MAX_QUESTIONS) {
+  localStorage.setItem('mostRecentScore', score)
+}
+
+
+  questionCounter++
+  progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`
+  progressBarFull.style.width = `${(questionsCounter/MAX_QUESTIONS) * 100}%`
+
+
+
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
   question.innerText = currentQuestion.question;
@@ -76,9 +86,33 @@ getNewQuestion = () => {
     const number = choices.dataset ['number'];
     choices.innerText = currentQuestion['choice' + number];
   })
+
+  availableQuestions.splice(questionIndex, 1)
+
+  acceptingAnswers = true
 };
 
+choices.forEach(choice => {
+  choice.addEventListener('click', e =>{
+    if (!acceptingAnswers) return
+
+    acceptingAnswers = false
+    const selectedChoice = e.target
+    const selectedAnswer = selectedChoice.dataset['number']
+  })
+})
 startQuiz();
+
+function startTimer() {
+  var timer = document.getElementById(“timerDisplay”);
+  countDown = setInterval(function secondsLeft() {
+    timeRemaining--;
+    timer.textContent = “timer: ” + timeRemaining;
+    if (timeRemaining < 0) {
+      endQuiz();
+    }
+  }, 1000);
+}
 
 
 
